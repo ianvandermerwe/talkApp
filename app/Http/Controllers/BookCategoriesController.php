@@ -18,7 +18,7 @@ class BookCategoriesController extends Controller{
 
     public function listCategories()
     {
-        $bookCategories = $this->bookCategory->all();
+        $bookCategories = $this->bookCategory->paginate(5);
 
         return View::make('bookCategories/list',compact('bookCategories'));
     }

@@ -18,6 +18,7 @@ class CreateBookCategoriesTable extends Migration {
 			$table->string('name');
 			$table->integer('enabled')->default(0);
 			$table->timestamps();
+            $table->dateTime('deleted_at');
 		});
 	}
 

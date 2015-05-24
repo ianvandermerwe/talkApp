@@ -1,22 +1,29 @@
 <?php namespace App\Models;
 
-use App\Services\CRUD;
-use Illuminate\Database\Eloquent;
+use Eloquent;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Book extends Eloquent implements CRUD{
+class Book extends Eloquent{
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
+    protected $fillable = ['book_category_id','name','desc','enabled'];
 
     public function bookCategory()
     {
         $this->belongsTo('App\BookCategory');
     }
 
-    public function editCreateItem($id = null)
-    {
-        // TODO: Implement editCreateItem() method.
+    public function findInstance($id = null){
+        $book = $this->find($id);
+        if(!is_null($book)){
+            return $book;
+        }
+
+        return $this;
     }
 
-    public function deleteItem($id)
+    public function scopeEnabled($query)
     {
-        // TODO: Implement deleteItem() method.
+        return $query->where('enabled', '=', 1);
     }
 }

@@ -18,8 +18,8 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
-Route::group(['prefix' => 'categories','middleware' => ['auth']], function(){
 //Categories Routes
+Route::group(['prefix' => 'categories','middleware' => ['auth']], function(){
     Route::get('/', 'BookCategoriesController@listCategories');
 
     Route::get('/edit/', 'BookCategoriesController@loadEditCreateCategories');
@@ -29,4 +29,17 @@ Route::group(['prefix' => 'categories','middleware' => ['auth']], function(){
 
     Route::get('/delete/{id}', 'BookCategoriesController@loadDeleteCategories');
     Route::post('/delete/{id}', 'BookCategoriesController@postDeleteCategories');
+});
+
+//Books Routes
+Route::group(['prefix' => 'book','middleware' => ['auth']], function(){
+    Route::get('/', 'BooksController@listBooks');
+
+    Route::get('/edit/', 'BooksController@loadEditCreateBooks');
+    Route::post('/edit/', 'BooksController@postEditCreateBooks');
+    Route::get('/edit/{id}', 'BooksController@loadEditCreateBooks');
+    Route::post('/edit/{id}', 'BooksController@postEditCreateBooks');
+
+    Route::get('/delete/{id}', 'BooksController@loadDeleteBooks');
+    Route::post('/delete/{id}', 'BooksController@postDeleteBooks');
 });

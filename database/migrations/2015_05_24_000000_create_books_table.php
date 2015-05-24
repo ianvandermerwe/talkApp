@@ -20,6 +20,7 @@ class CreateBooksTable extends Migration {
             $table->text('desc');
 			$table->integer('enabled')->default(0);
 			$table->timestamps();
+            $table->dateTime('deleted_at');
 		});
 	}
 

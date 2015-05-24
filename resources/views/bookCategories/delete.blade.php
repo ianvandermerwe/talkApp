@@ -5,7 +5,9 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Are you sure you want to delete this item</div>
+                    <div class="panel-heading">
+                        <h4>Are you sure you want to delete this item</h4>
+                    </div>
 
                     <div class="panel-body">
                         <form action="{{ action('BookCategoriesController@postDeleteCategories',$bookCategory->id)}}" method="POST">
