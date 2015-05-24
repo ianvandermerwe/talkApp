@@ -18,4 +18,9 @@ class BookCategory extends Eloquent{
 
         return $this;
     }
+
+    public function scopeEnabled($query)
+    {
+        return $query->where('enabled', '=', 1);
+    }
 }

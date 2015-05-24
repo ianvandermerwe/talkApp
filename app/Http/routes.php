@@ -18,13 +18,15 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
+Route::group(['prefix' => 'categories','middleware' => ['auth']], function(){
 //Categories Routes
-Route::get('/categories', 'BookCategoriesController@listCategories');
+    Route::get('/', 'BookCategoriesController@listCategories');
 
-Route::get('/categories/edit/', 'BookCategoriesController@loadEditCreateCategories');
-Route::post('/categories/edit/', 'BookCategoriesController@postEditCreateCategories');
-Route::get('/categories/edit/{id}', 'BookCategoriesController@loadEditCreateCategories');
-Route::post('/categories/edit/{id}', 'BookCategoriesController@postEditCreateCategories');
+    Route::get('/edit/', 'BookCategoriesController@loadEditCreateCategories');
+    Route::post('/edit/', 'BookCategoriesController@postEditCreateCategories');
+    Route::get('/edit/{id}', 'BookCategoriesController@loadEditCreateCategories');
+    Route::post('/edit/{id}', 'BookCategoriesController@postEditCreateCategories');
 
-Route::get('/categories/delete/{id}', 'BookCategoriesController@loadDeleteCategories');
-Route::post('/categories/delete/{id}', 'BookCategoriesController@postDeleteCategories');
+    Route::get('/delete/{id}', 'BookCategoriesController@loadDeleteCategories');
+    Route::post('/delete/{id}', 'BookCategoriesController@postDeleteCategories');
+});
